@@ -1,0 +1,24 @@
+{
+  "name": "apitests",
+  "version": "1.0.0",
+  "description": "SRFun API testing",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cypress: open": "./node_modules/.bin/cypress open",
+    "cypress: run": "./node_modules/.bin/cypress run --spec ** / *. spec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexandrChernikov/SRFunAPI.git"
+  },
+  "author": "Alexandr Chernikov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlexandrChernikov/SRFunAPI/issues"
+  },
+  "homepage": "https://github.com/AlexandrChernikov/SRFunAPI#readme",
+  "dependencies": {
+    "cypress": "^8.3.1"
+  }
+}
