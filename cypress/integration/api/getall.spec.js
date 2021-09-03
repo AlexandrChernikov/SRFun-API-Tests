@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 const { describe } = require("mocha");
 import { expect } from 'chai';
-import { baseURL } from 'C:/Projects/SRFunAPITests/cypress.json';
+import { baseURL } from '../../../cypress.json';
 //const testData = require("../");
 
 
