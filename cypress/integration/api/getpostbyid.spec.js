@@ -22,14 +22,14 @@ describe('Получение записи по ID', () =>{
             failOnStatusCode: true
         }).should((Response) => {
             cy.log(JSON.stringify(Response.body)) 
-            expect(Response.status).to.eq(200)
+            expect(Response.status).to.eq(204)
                           
         }) 
     });
 
     it('Get Post by id prorerties', () => {
         cy.request('GET', baseURL+"/srfun/api/Posts/Get?postId=50c2795e-9056-4f37-8d67-64990922cd53").then((res) =>{
-            expect(res.status).eq(200)
+            expect(res.status).eq(204)
             expect(res.body).has.property("id","50c2795e-9056-4f37-8d67-64990922cd53")
             expect(res.body).has.property("imageLink", "https://srfun.koniglabs.ru/videos/eb3a376f-3f83-4c2b-88bf-093b61062049.jpg")
             expect(res.body).has.property("videoLink", "https://srfun.koniglabs.ru/videos/4dbc833c-3a20-4af5-9bd3-14fdb235184a.mp4")
