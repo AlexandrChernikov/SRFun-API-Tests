@@ -4,22 +4,11 @@ const testData = require('../../fixtures/devicereg.json');
 //import { testData  } from '../fixtures/devicereg.json'
 
 describe('Device reg', () =>  {
-    // let accessToken = ''
-    testData.forEach((testDataRow) =>{
-        // const data = {  
-        //     "OrigDevId":      testData.OrigDevId,
-        //     "model":          testData.model,
-        //     "manufacturer":   testData.manufacturer,
-        //     "name":           testData.name,
-        //     "version":        testData.version,
-        //     "serialNumber":   testData.serialNumber,
-        //     "platform":       testData.platform,
-        //     "idiom":          testData.idiom,
-        //     "type":           testData.type
-        // };
     
+    testData.forEach((testDataRow) =>{
+       
 
-        context(`Context is ${testDataRow.context}`, () => {
+        context('Регистрация устройства', () => {
                 it('POST device info', () => {
                     cy.request({
                         method:'POST', 

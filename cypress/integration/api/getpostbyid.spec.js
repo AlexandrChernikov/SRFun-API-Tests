@@ -54,7 +54,7 @@ describe('Получение записи по ID', () =>{
         }) 
     });
 
-    it('Get Post by id prorerties', () => {
+    it('Get Post by id properties', () => {
         cy.request('GET', baseURL+"/srfun/api/Posts/Get?postId=65317a5f-b99a-4187-b7a8-d4934b53dd9c").then((res) =>{
             expect(res.status).eq(204)
             expect(res.body).has.property("id","65317a5f-b99a-4187-b7a8-d4934b53dd9c")

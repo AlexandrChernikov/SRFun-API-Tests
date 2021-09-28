@@ -5,11 +5,11 @@ import { baseURL } from '../../../cypress.json';
 //const testData = require("../");
 
 
-describe('Получение списка всех загруженных файлов', ()=> {
+describe('Отправка кода верификации по смс для создания пользователя', ()=> {
 
     
 
-    it('Get ALL files', () => {
+    it('Verify Phone number', () => {
         cy.request({  //get token
             method:'POST', 
             url: baseURL + '​/srfun/api/Auth/deviceregister',
@@ -31,16 +31,18 @@ describe('Получение списка всех загруженных фай
         expect(resbody).to.not.be.null
         expect(resbody.accessToken).to.not.be.null
         
-        //Получение токена 
+        //SET token 
        const token = (resbody.accessToken)
-        
-    
+          
 
 
         cy.request({
-            url: baseURL+"/srfun/api/Posts/GetAll",
-            metod: 'GET',
-            headers: {'Authorization': 'Bearer '+ token}
+            url: baseURL+"/srfun/api/Auth/VerifyPhone",
+            method: 'POST',
+            headers: {'Authorization': 'Bearer '+ token},
+            body:   {
+                'phone': '+79520505577'
+                    }
             })
             .should((Response) => {
                 cy.log(JSON.stringify(Response.body))
