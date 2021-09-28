@@ -7,9 +7,10 @@ import { baseURL } from '../../../cypress.json';
 
 describe('Отправка кода верификации по смс для создания пользователя', ()=> {
 
-    
-
+    let token;
+   
     it('Verify Phone number', () => {
+        
         cy.request({  //get token
             method:'POST', 
             url: baseURL + '​/srfun/api/Auth/deviceregister',
@@ -27,9 +28,9 @@ describe('Отправка кода верификации по смс для с
             failOnStatusCode: false   
     }).then(response => {
         token = response.body.accessToken;
-        expect(response.status).eq(200);
-        //expect(response.body).to.not.be.null;
-        //expect(response.accessToken).to.not.be.null;
+        expect(response.status).to.eq(200);
+        expect(response.body).to.not.be.null;
+        expect(response.accessToken).to.not.be.null;
         
         //SET token 
        //const token = (resbody.accessToken)
@@ -37,26 +38,29 @@ describe('Отправка кода верификации по смс для с
     });
 
 //https://dou.ua/lenta/articles/choosing-postman/
-
+    let confToken;
 
     it('Verify Phone number', () => {
         cy.request({
             url: baseURL+"/srfun/api/Auth/VerifyPhone",
             method: 'POST',
-            headers: {'Authorization': 'Bearer ${token}'},
+            headers: {'Authorization': `Bearer ${token}`},
             body:   {
                 'phone': '+79520505577'
                     }
             })
-            .should((Response) => {
-                cy.log(JSON.stringify(Response.body))
-                expect(Response.status).to.eq(200)        
-                              
-            })
+            .then(response => {
+                confToken = response.body.accessToken
+                //cy.log(JSON.stringify(response.body))
+                expect(response.status).to.eq(200)
+                //cy.log(JSON.stringify(confToken))    
+            });
             // Set token for phone confirmation 
-        let confToken = (Response.body.accessToken)    
+    });
+    
+    
 
-
+    it('Confirm phone', () => {
         cy.request({
             url: baseURL+ '/srfun/api/Auth/ConfirmPhone',
             method: 'POST',
@@ -64,14 +68,10 @@ describe('Отправка кода верификации по смс для с
             body:   {
                 "code": "0000"
                     }
-                }).should((response) => {
+                }).then(response => {
                     expect(response.status).to.eq(200)
-                })
-         
-    })    
+                });
+            });     
         
 
-            
-            
-    
-})
+});
